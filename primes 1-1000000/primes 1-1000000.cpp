@@ -1,4 +1,4 @@
-//this program prints the prime numbers between 1-1000000 in hexadecimal
+//this C++ program prints the prime numbers between 1-1000000000 in hexadecimal
 
 #include <iostream>
 #include <math.h>
@@ -6,29 +6,22 @@ using namespace std;
 
 int main()
 {
-	int i, j, k;
-	int prime[1000000];
-	int count = 0;
-	for (i = 2;i < 1000000;i++)
+	int n = 1000000000;
+	int sq = sqrt(n);
+	int *a = new int[n];
+	a[0] = 1;
+	a[1] = 1;
+	for (int i = 2; i < n; i++)
 	{
-		for (j = 2;j <= sqrt(i);j++)
-		{
-			if (i % j == 0)
-			{
-				break;
-			}
-		}
-		if (j > sqrt(i))
-		{
-			prime[count] = i;
-			count++;
-		}
+		if (a[i] == 0)
+			for (int j = 2; i * j < n; j++)
+				a[i * j] = 1;
 	}
-	for (k = 0;k < count;k++)
+	for (int i = 0; i < n; i++)
 	{
-		cout << hex << prime[k] << endl;
+		if (a[i] == 0)
+			cout << hex << i << " ";
 	}
+	delete[] a;
 	return 0;
 }
-
-// this program prints the prime numbers between 1-1000000 in hex
